@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include <SDL_image.h>
 
 class Screen
 {
@@ -14,6 +15,7 @@ public:
 	bool Initialize();
 	void Refresh();
 	void Present();
+	void Copy();
 	void Shutdown();
 
 private:

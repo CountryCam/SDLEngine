@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Screen.h"
 
+SDL_Texture* playerTex;
+
 Screen::Screen()
 {
 	m_window = nullptr;
@@ -25,11 +27,15 @@ bool Screen::Initialize()
 		return false;
 	}
 
-	m_window = SDL_CreateWindow("My Game Engine",
+	m_window = SDL_CreateWindow("Cameron's Game Engine",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		1280, 720,
 		0);
+
+	SDL_Surface* tmpSurface = IMG_Load("Assets/idle0001.png");
+	playerTex = SDL_CreateTextureFromSurface(m_renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
 
 	if (!m_window)
 	{
@@ -57,6 +63,12 @@ void Screen::Present()
 {
 	//Swap the frame buffers
 	SDL_RenderPresent(m_renderer);
+}
+
+void Screen::Copy()
+{
+	//Copying the Render Images
+	SDL_RenderCopy(m_renderer, playerTex, NULL, NULL);
 }
 
 void Screen::Shutdown()
