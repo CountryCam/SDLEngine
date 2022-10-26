@@ -45,8 +45,8 @@ private:
 	bool m_isAnimationLooping;
 	bool m_isAnimationLoopFinal;
 	
-	SDL_Texture* m_texture;
-	SDL_Texture* m_background;
+	SDL_Texture* texture;
+	SDL_Texture* background;
 	Vector<int> m_celDimension;
 	Vector<int> m_sourceDimension;
 	Vector<int> m_textureDimension;

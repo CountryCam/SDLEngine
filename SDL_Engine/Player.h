@@ -29,15 +29,15 @@ private:
 
 	bool IsEnemyDead = true;
 	
-	Texture m_image;
+	Texture image;
 	
 	
-	Vector<int> m_position;
-	Vector<int> m_EnemyPos;
-	Vector<int> m_PlayerWidth;
-	Vector<int> m_PlayerHeight;
-	Vector<int> m_imageWidth;
-	Vector<int> m_imageHeight;
+	Vector<int> position;
+	Vector<int> enemyPos;
+	Vector<int> playerWidth;
+	Vector<int> playerHeight;
+	Vector<int> imageWidth;
+	Vector<int> imageHeight;
 	
 
 };

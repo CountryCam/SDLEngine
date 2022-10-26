@@ -4,8 +4,8 @@
 
 Texture::Texture(int width, int height)
 {
-	m_texture = nullptr;
-	m_background = nullptr;
+	texture = nullptr;
+	background = nullptr;
 
 	m_textureDimension.x = width;
 	m_textureDimension.y = height;
@@ -36,14 +36,14 @@ bool Texture::Load(const std::string& filename, Screen& screen)
 		return false;
 	}
 
-	m_texture = SDL_CreateTextureFromSurface(screen.GetRenderer(), TextureData);
+	texture = SDL_CreateTextureFromSurface(screen.GetRenderer(), TextureData);
 	return true;
 }
 
 void Texture::Unload()
 {
-	SDL_DestroyTexture(m_texture);
-	SDL_DestroyTexture(m_background);
+	SDL_DestroyTexture(texture);
+	SDL_DestroyTexture(background);
 }
 
 void Texture::IsAnimated(bool flag)
@@ -108,6 +108,6 @@ void Texture::Render(Screen& screen, int x, int y, Flip flip)
 		centrePoint.x = m_textureDimension.x / 2;
 		centrePoint.y = m_textureDimension.y / 2;
 
-		SDL_RenderCopyEx(screen.GetRenderer(), m_texture, &src, &dst, 0.0, &centrePoint, static_cast<SDL_RendererFlip>(flip));
+		SDL_RenderCopyEx(screen.GetRenderer(), texture, &src, &dst, 0.0, &centrePoint, static_cast<SDL_RendererFlip>(flip));
 	}
 }

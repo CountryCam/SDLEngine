@@ -31,9 +31,9 @@ private:
 	bool m_MainMenuText = true;
 	
 	std::string m_string;
-	SDL_Point m_textSize;
+	SDL_Point textSize;
 
-	TTF_Font* m_font;
-	SDL_Color m_color;
-	SDL_Texture* m_texture;
+	TTF_Font* font;
+	SDL_Color color;
+	SDL_Texture* texture;
 };

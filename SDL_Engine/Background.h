@@ -11,12 +11,12 @@ public:
 	void Render(Screen& screen);
 	void Unload();
 
-	bool GetBackground() { return m_altBackGround; };
+	bool GetBackground() { return altBackground; };
 
 private:
-	Texture m_background;
-	Texture m_backgroundMain;
+	Texture background;
+	Texture backgroundMain;
 	
-	Vector<int> m_position;
-	bool m_altBackGround = false;
+	Vector<int> position;
+	bool altBackground = false;
 };
