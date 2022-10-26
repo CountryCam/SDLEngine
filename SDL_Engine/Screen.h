@@ -19,7 +19,7 @@ public:
 	void Shutdown();
 
 private:
-	SDL_Window* m_window;
-	SDL_Renderer* m_renderer;
+	SDL_Window* m_window; //Coding standards have changed from m_window -> window 
+	SDL_Renderer* m_renderer; //Coding standards have changed from m_renderer -> renderer
 };
 
