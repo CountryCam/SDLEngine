@@ -11,6 +11,7 @@ public:
 	void Render(Screen& screen);
 	void Unload();
 
+	//TODO - Why is the function definition not in the .cpp file?
 	bool GetBackground() { return altBackground; };
 
 private:

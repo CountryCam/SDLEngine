@@ -5,7 +5,8 @@
 #include "Screen.h"
 #include "Vector.h"
 
-
+//TODO - Remove whitespace
+//TODO - Remove m_
 
 class Texture
 {

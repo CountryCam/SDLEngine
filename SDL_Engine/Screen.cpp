@@ -5,10 +5,13 @@ SDL_Texture* playerTex;
 
 Screen::Screen()
 {
+	//TODO - Consider brace initialization in the header file 
+	//and remove ctor entirely
 	window = nullptr;
 	renderer = nullptr;
 }
 
+//TODO - Do we need this?
 Screen::~Screen()
 {
 
@@ -30,9 +33,10 @@ bool Screen::Initialize()
 	window = SDL_CreateWindow("Cameron's Game Engine",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		1280, 720,
+		1280, 720, //TODO - Don't hardcode the resolution
 		0);
 
+	//TODO - What is this doing here?
 	SDL_Surface* tmpSurface = IMG_Load("Assets/idle0001.png");
 	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 	SDL_FreeSurface(tmpSurface);
@@ -67,6 +71,7 @@ void Screen::Present()
 
 void Screen::Copy()
 {
+	//TODO - What is this for???
 	//Copying the Render Images
 	SDL_RenderCopy(renderer, playerTex, NULL, NULL);
 }

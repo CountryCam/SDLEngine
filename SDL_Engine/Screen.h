@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+//TODO - Make this a Singleton
+
 class Screen
 {
 
@@ -15,7 +17,7 @@ public:
 	bool Initialize();
 	void Refresh();
 	void Present();
-	void Copy();
+	void Copy(); //Bad name!!
 	void Shutdown();
 
 private:

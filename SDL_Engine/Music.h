@@ -3,6 +3,8 @@
 #include <string>
 #include <SDL_mixer.h>
 
+//TODO - Remove m_
+
 class Music
 {
 public:
@@ -17,7 +19,7 @@ public:
 
 	bool Initialize(int frequency = 44100, int chunkSize = 1024);
 	bool Load(const std::string& filename); //, const std::string& tag
-	void Unload(); //const std::string& tag = ""
+	void Unload(); //const std::string& tag = "" //???
 	void Shutdown();
 
 	void SetVolume(float volume);

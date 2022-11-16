@@ -21,12 +21,13 @@ Animations::Animations(Screen& screen)
 	m_playerIdle.SetTextureDimension(140, 171);
 	m_playerIdle.SetSourceDimension(7, 1, 1540, 221);
 	
-	
+	//TODO - Remove whitespace
 
 	
 	
 }
 
+//TODO - Does this destructor need to do anything?
 Animations::~Animations()
 {
 	
