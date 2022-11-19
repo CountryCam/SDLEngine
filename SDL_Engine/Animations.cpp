@@ -20,23 +20,18 @@ Animations::Animations(Screen& screen)
 	m_playerIdle.Load("Images/IdleSpriteSheet.png", screen);
 	m_playerIdle.SetTextureDimension(140, 171);
 	m_playerIdle.SetSourceDimension(7, 1, 1540, 221);
-	
-	//TODO - Remove whitespace
-
-	
-	
 }
 
-//TODO - Does this destructor need to do anything?
+
 Animations::~Animations()
 {
-	
+	m_portal.Unload();
+	m_playerRun.Unload();
+	m_playerIdle.Unload();
 }
 
 void Animations::Update(Vector<int> playerPosition)
 {
-	//auto keys = Input::Instance()->GetKey();
-
 	m_positionPortal.x = playerPosition.x +80;
 	m_positionPortal.y = playerPosition.y;
 
@@ -47,7 +42,6 @@ void Animations::Update(Vector<int> playerPosition)
 	{
 		std::cout << "Mouse Left Clicked" << std::endl;
 		m_portalActive = true;
-		
 	}
 	else 
 	{
@@ -71,8 +65,6 @@ void Animations::Update(Vector<int> playerPosition)
 		m_directionWalk = Vector<int>::Zero;
 		m_playerMoveRight = false;
 	}
-
-	
 }
 
 void Animations::Render(Screen& screen, Background& background)

@@ -24,7 +24,7 @@ Player::Player(Screen& screen)
 
 Player::~Player()
 {
-	//image.Unload();
+	image.Unload();
 }
 
 void Player::Update(Screen& screen)
