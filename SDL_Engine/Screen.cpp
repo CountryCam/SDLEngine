@@ -59,7 +59,7 @@ bool Screen::Initialize()
 
 void Screen::Refresh()
 {
-	//Clear to SCreen
+	//Clear to Screen
 	SDL_RenderClear(renderer);
 }
 

@@ -3,8 +3,6 @@
 #include "Background.h"
 #include <iostream>
 
-//TODO - Remove whitespace
-
 Background::Background(Screen& screen)
 {
 	background.Load("Images/BackGround.png", screen);
@@ -14,8 +12,6 @@ Background::Background(Screen& screen)
 	backgroundMain.Load("Images/RockyBackground.png", screen);
 	backgroundMain.SetTextureDimension(1280, 720);
 	backgroundMain.SetSourceDimension(1, 1, 1280, 720);
-
-	
 }
 
 void Background::Update()
@@ -44,7 +40,6 @@ void Background::Render(Screen& screen)
 	{
 		backgroundMain.Render(screen);
 	}
-
 	else
 	{
 		background.Render(screen);
@@ -56,5 +51,3 @@ void Background::Unload()
 	background.Unload();
 	backgroundMain.Unload();
 }
-
-

@@ -3,12 +3,9 @@
 #include <string>
 #include <SDL_mixer.h>
 
-//TODO - Remove m_
-
 class Music
 {
 public:
-
 	enum class Loop
 	{
 		Once = 1,
@@ -31,5 +28,5 @@ public:
 
 private:
 
-	Mix_Music* m_music;
+	Mix_Music* music;
 };

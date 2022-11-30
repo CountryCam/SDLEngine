@@ -7,63 +7,63 @@
 
 Animations::Animations(Screen& screen)
 {
-	m_velocity = 2; 
+	velocity = 2; 
 	
-	m_portal.Load("Images/GreenPortal.png", screen);
-	m_portal.SetTextureDimension(240, 192);
-	m_portal.SetSourceDimension(8, 3, 512, 192);
+	portal.Load("Images/GreenPortal.png", screen);
+	portal.SetTextureDimension(240, 192);
+	portal.SetSourceDimension(8, 3, 512, 192);
 
-	m_playerRun.Load("Images/SpriteSheet0001Run.png", screen);
-	m_playerRun.SetTextureDimension(140, 171); //130, 161
-	m_playerRun.SetSourceDimension(9, 1, 1380, 161); //9, 1, 1380, 161
+	playerRun.Load("Images/SpriteSheet0001Run.png", screen);
+	playerRun.SetTextureDimension(140, 171); //130, 161
+	playerRun.SetSourceDimension(9, 1, 1380, 161); //9, 1, 1380, 161
 			
-	m_playerIdle.Load("Images/IdleSpriteSheet.png", screen);
-	m_playerIdle.SetTextureDimension(140, 171);
-	m_playerIdle.SetSourceDimension(7, 1, 1540, 221);
+	playerIdle.Load("Images/IdleSpriteSheet.png", screen);
+	playerIdle.SetTextureDimension(140, 171);
+	playerIdle.SetSourceDimension(7, 1, 1540, 221);
 }
 
 
 Animations::~Animations()
 {
-	m_portal.Unload();
-	m_playerRun.Unload();
-	m_playerIdle.Unload();
+	portal.Unload();
+	playerRun.Unload();
+	playerIdle.Unload();
 }
 
 void Animations::Update(Vector<int> playerPosition)
 {
-	m_positionPortal.x = playerPosition.x +80;
-	m_positionPortal.y = playerPosition.y;
+	positionPortal.x = playerPosition.x +80;
+	positionPortal.y = playerPosition.y;
 
-	m_positionPlayer.x = playerPosition.x; 
-	m_positionPlayer.y = playerPosition.y +65;
+	positionPlayer.x = playerPosition.x; 
+	positionPlayer.y = playerPosition.y +65;
 
 	if (Input::Instance()->IsMouseClicked(HM_MOUSE_LEFT) == true)
 	{
 		std::cout << "Mouse Left Clicked" << std::endl;
-		m_portalActive = true;
+		portalActive = true;
 	}
 	else 
 	{
-		m_portalActive = false;
+		portalActive = false;
 	}
 
 	if ((Input::Instance()->IsKeyPressed(HM_KEY_LEFT)) || (Input::Instance()->IsKeyPressed(HM_KEY_A)))
 	{
-		m_directionStand = m_directionWalk = Vector<int>::Left;
-		m_playerMoveRight = true;
-		m_playerActive = false;
+		directionStand = directionWalk = Vector<int>::Left;
+		playerMoveRight = true;
+		playerActive = false;
 	}
 	else if ((Input::Instance()->IsKeyPressed(HM_KEY_RIGHT)) || (Input::Instance()->IsKeyPressed(HM_KEY_D)))
 	{
-		m_directionStand = m_directionWalk = Vector<int>::Right;
-		m_playerMoveRight = true;
-		m_playerActive = false;
+		directionStand = directionWalk = Vector<int>::Right;
+		playerMoveRight = true;
+		playerActive = false;
 	}
 	else
 	{
-		m_directionWalk = Vector<int>::Zero;
-		m_playerMoveRight = false;
+		directionWalk = Vector<int>::Zero;
+		playerMoveRight = false;
 	}
 }
 
@@ -74,69 +74,69 @@ void Animations::Render(Screen& screen, Background& background)
 		return;
 	}
 
-	if (m_directionWalk.x == 0 && m_directionWalk.y == 0 )
+	if (directionWalk.x == 0 && directionWalk.y == 0 )
 	{
-		m_directionStand.x < 0.0f ? m_playerIdle.Render(screen, m_positionPlayer.x, m_positionPlayer.y, Texture::Flip::Horizontal)
-			: m_playerIdle.Render(screen, m_positionPlayer.x, m_positionPlayer.y);
+		directionStand.x < 0.0f ? playerIdle.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
+			: playerIdle.Render(screen, positionPlayer.x, positionPlayer.y);
 	}
 	else
 	{
-		m_directionWalk.x < 0.0f ? m_playerRun.Render(screen, m_positionPlayer.x, m_positionPlayer.y, Texture::Flip::Horizontal)
-			: m_playerRun.Render(screen, m_positionPlayer.x, m_positionPlayer.y);
+		directionWalk.x < 0.0f ?  playerRun.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
+			:  playerRun.Render(screen, positionPlayer.x, positionPlayer.y);
 	}
 	
 	
 
-	if (m_portalActive == true)
+	if (portalActive == true)
 	{
-		m_portal.IsAnimated(true);
-		m_portal.IsAnimationLooping(true);
-		m_portal.SetAnimationSpeed(0.09f);
-		m_portal.Update();
-		m_portal.Render(screen, m_positionPortal.x, m_positionPortal.y);
+		portal.IsAnimated(true);
+		portal.IsAnimationLooping(true);
+		portal.SetAnimationSpeed(0.09f);
+		portal.Update();
+		portal.Render(screen, positionPortal.x, positionPortal.y);
 	}
-	if (m_playerActive == true)
+	if (playerActive == true)
 	{
-		m_playerIdle.IsAnimated(true);
-		m_playerIdle.IsAnimationLooping(true);
-		m_playerIdle.SetAnimationSpeed(0.1f);
-		m_playerIdle.Update();
+		playerIdle.IsAnimated(true);
+		playerIdle.IsAnimationLooping(true);
+		playerIdle.SetAnimationSpeed(0.1f);
+		playerIdle.Update();
 	}
-	if (m_playerActive == false)
+	if (playerActive == false)
 	{
-		m_playerIdle.IsAnimated(false);
-		m_playerIdle.IsAnimationLooping(false);
-		m_playerIdle.SetAnimationSpeed(0.1f);
-		m_playerIdle.Update();
+		playerIdle.IsAnimated(false);
+		playerIdle.IsAnimationLooping(false);
+		playerIdle.SetAnimationSpeed(0.1f);
+		playerIdle.Update();
 
 	}
 
-	if (m_playerMoveRight == true)
+	if (playerMoveRight == true)
 	{
-		m_playerRun.IsAnimated(true);
-		m_playerRun.IsAnimationLooping(true);
-		m_playerRun.SetAnimationSpeed(0.1f);
-		m_playerRun.Update();
-		m_playerActive = false;
+		playerRun.IsAnimated(true);
+		playerRun.IsAnimationLooping(true);
+		playerRun.SetAnimationSpeed(0.1f);
+		playerRun.Update();
+		playerActive = false;
 	}
-	if (m_playerMoveRight == false)
+	if (playerMoveRight == false)
 	{
-		m_playerRun.IsAnimated(false);
-		m_playerRun.IsAnimationLooping(false);
-		m_playerRun.SetAnimationSpeed(0.1f);
-		m_playerRun.Update();
-		m_playerActive = true;
+		playerRun.IsAnimated(false);
+		playerRun.IsAnimationLooping(false);
+		playerRun.SetAnimationSpeed(0.1f);
+		playerRun.Update();
+		playerActive = true;
 	}
 }
 
 void Animations::Unload()
 {
-	m_portal.Unload();
-	m_playerRun.Unload();
-	m_playerIdle.Unload();
+	portal.Unload();
+	playerRun.Unload();
+	playerIdle.Unload();
 }
 
 Vector<int> Animations::GetPostion()
 {
-	return m_positionPlayer;
+	return positionPlayer;
 }

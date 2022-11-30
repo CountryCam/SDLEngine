@@ -16,9 +16,9 @@ bool Music::Initialize(int frequency, int chunkSize)
 
 bool Music::Load(const std::string& filename)
 {
-	m_music = Mix_LoadMUS(filename.c_str());
+	music = Mix_LoadMUS(filename.c_str());
 
-	if (!m_music)
+	if (!music)
 	{
 		std::cout << "Error loading audio." << std::endl;
 		return false;
@@ -29,7 +29,7 @@ bool Music::Load(const std::string& filename)
 
 void Music::Unload()
 {
-	Mix_FreeMusic(m_music);
+	Mix_FreeMusic(music);
 }
 
 void Music::Shutdown()
@@ -39,7 +39,7 @@ void Music::Shutdown()
 
 Music::Music()
 {
-	m_music = nullptr;
+	music = nullptr;
 }
 
 void Music::SetVolume(float volume)
@@ -52,7 +52,7 @@ bool Music::Play(Loop loop)
 {
 	if (!Mix_PlayingMusic())
 	{
-		if (Mix_PlayMusic(m_music, static_cast<int>(loop)) == -1)
+		if (Mix_PlayMusic(music, static_cast<int>(loop)) == -1)
 		{
 			std::cout << "Error playing audio." << std::endl;
 			return false;
