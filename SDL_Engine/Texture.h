@@ -5,14 +5,9 @@
 #include "Screen.h"
 #include "Vector.h"
 
-//TODO - Remove whitespace
-//TODO - Remove m_
-
 class Texture
 {
-
 public:
-
 	enum class Flip
 	{
 		None = SDL_FLIP_NONE,
@@ -36,20 +31,18 @@ public:
 	void Render(Screen& screen, int x = 0, int y = 0, Flip flip = Flip::None);
 
 private:
+	int cell;
+	float animationSpeed;
+	float animationRunningTime;
 
-	int m_cell;
-	float m_animationSpeed;
-	float m_animationRunningTime;
-
-	bool m_isAnimated;
-	bool m_isAnimationDead;
-	bool m_isAnimationLooping;
-	bool m_isAnimationLoopFinal;
+	bool isAnimated;
+	bool isAnimationDead;
+	bool isAnimationLooping;
+	bool isAnimationLoopFinal;
 	
 	SDL_Texture* texture;
 	SDL_Texture* background;
-	Vector<int> m_celDimension;
-	Vector<int> m_sourceDimension;
-	Vector<int> m_textureDimension;
-	
+	Vector<int> celDimension;
+	Vector<int> sourceDimension;
+	Vector<int> textureDimension;
 };

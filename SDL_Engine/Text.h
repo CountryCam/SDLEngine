@@ -6,8 +6,6 @@
 #include "Screen.h"
 #include "Background.h"
 
-//TODO - Remove m_
-
 class Text
 {
 
@@ -30,7 +28,7 @@ public:
 private:
 
 	void CreateText(Screen& screen);
-	bool m_MainMenuText = true; //Camel case!
+	bool mainMenuText = true; //Camel case!
 	
 	std::string m_string;
 	SDL_Point textSize;

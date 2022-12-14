@@ -7,23 +7,23 @@ Texture::Texture(int width, int height)
 	texture = nullptr;
 	background = nullptr;
 
-	m_textureDimension.x = width;
-	m_textureDimension.y = height;
+	textureDimension.x = width;
+	textureDimension.y = height;
 
-	m_celDimension.x = 0;
-	m_celDimension.y = 0;
+	celDimension.x = 0;
+	celDimension.y = 0;
 
-	m_sourceDimension.x = 0;
-	m_sourceDimension.y = 0;
+	sourceDimension.x = 0;
+	sourceDimension.y = 0;
 
-	m_cell = 0;
-	m_animationSpeed = 0.0f;
-	m_animationRunningTime = 0.0f;
+	cell = 0;
+	animationSpeed = 0.0f;
+	animationRunningTime = 0.0f;
 
-	m_isAnimated = false;
-	m_isAnimationDead = false;	
-	m_isAnimationLooping = false;
-	m_isAnimationLoopFinal = false;
+	isAnimated = false;
+	isAnimationDead = false;	
+	isAnimationLooping = false;
+	isAnimationLoopFinal = false;
 }
 
 bool Texture::Load(const std::string& filename, Screen& screen)
@@ -48,65 +48,65 @@ void Texture::Unload()
 
 void Texture::IsAnimated(bool flag)
 {
-	m_isAnimated = flag;
+	isAnimated = flag;
 }
 
 void Texture::IsAnimationLooping(bool flag)
 {
-	m_isAnimationLooping = flag;
+	isAnimationLooping = flag;
 }
 
 void Texture::SetTextureDimension(int width, int height)
 {
-	m_textureDimension.x = width;
-	m_textureDimension.y = height;
+	textureDimension.x = width;
+	textureDimension.y = height;
 }
 
 void Texture::SetSourceDimension(int columns, int rows, int width, int height)
 {
-	m_sourceDimension.x = columns;
-	m_sourceDimension.y = rows;
+	sourceDimension.x = columns;
+	sourceDimension.y = rows;
 
-	m_celDimension.x = width / columns;
-	m_celDimension.y = height / rows;
+	celDimension.x = width / columns;
+	celDimension.y = height / rows;
 }
 
 void Texture::SetAnimationSpeed(float animationSpeed)
 {
-	m_animationSpeed = animationSpeed;
+	animationSpeed = animationSpeed;
 }
 
 void Texture::Update()
 {
-	if (m_isAnimated)
+	if (isAnimated)
 	{
-		m_animationRunningTime += 0.1f;
+		animationRunningTime += 0.1f;
 
-		m_cell = static_cast<int>((m_animationRunningTime * m_animationSpeed)) %
-			static_cast<int>(m_sourceDimension.x * m_sourceDimension.y);
+		cell = static_cast<int>((animationRunningTime * animationSpeed)) %
+			static_cast<int>(sourceDimension.x * sourceDimension.y);
 	}
 }
 
 void Texture::Render(Screen& screen, int x, int y, Flip flip)
 {
-	if (!m_isAnimationDead)
+	if (!isAnimationDead)
 	{
 		SDL_Rect src;
 		SDL_Rect dst;
 
-		src.x = (m_cell % m_sourceDimension.x) * m_celDimension.x;
-		src.y = (m_cell / m_sourceDimension.x) * m_celDimension.y;
-		src.w = m_celDimension.x;
-		src.h = m_celDimension.y;
+		src.x = (cell % sourceDimension.x) * celDimension.x;
+		src.y = (cell / sourceDimension.x) * celDimension.y;
+		src.w = celDimension.x;
+		src.h = celDimension.y;
 
 		dst.x = x;
 		dst.y = y;
-		dst.w = m_textureDimension.x;
-		dst.h = m_textureDimension.y;
+		dst.w = textureDimension.x;
+		dst.h = textureDimension.y;
 
 		SDL_Point centrePoint;
-		centrePoint.x = m_textureDimension.x / 2;
-		centrePoint.y = m_textureDimension.y / 2;
+		centrePoint.x = textureDimension.x / 2;
+		centrePoint.y = textureDimension.y / 2;
 
 		SDL_RenderCopyEx(screen.GetRenderer(), texture, &src, &dst, 0.0, &centrePoint, static_cast<SDL_RendererFlip>(flip));
 	}
