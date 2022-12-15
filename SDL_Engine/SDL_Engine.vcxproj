@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Animations.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />

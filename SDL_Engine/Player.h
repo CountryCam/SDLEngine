@@ -22,8 +22,8 @@ public:
 	Vector<int> GetPostion();
 private:
 	//TODO - What is this doing here???
-	const int SCREEN_WIDTH = 1280;
-	const int SCREEN_HEIGHT = 480;
+	//const int SCREEN_WIDTH = 1280;
+	//const int SCREEN_HEIGHT = 480;
 	const int SPRITE_SIZE = 108;
 	//TODO - Does player need to know this?
 	bool IsEnemyDead = true;

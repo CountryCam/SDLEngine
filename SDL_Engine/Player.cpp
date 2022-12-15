@@ -6,7 +6,6 @@
 
 Player::Player(Screen& screen)
 {
-
 	image.Load("Images/BurlyMan1.png", screen);
 	image.SetTextureDimension(140, 240);
 	image.SetSourceDimension(1, 1, 140, 240);
@@ -18,8 +17,6 @@ Player::Player(Screen& screen)
 
 	enemyPos.x = 400;
 	enemyPos.y = 350;
-
-	
 }
 
 Player::~Player()
@@ -60,7 +57,7 @@ void Player::Update(Screen& screen)
 	{
 		position.x = 0;
 	}
-	else if (position.x > SCREEN_WIDTH - SPRITE_SIZE)
+	/*else if (position.x > SCREEN_WIDTH - SPRITE_SIZE)
 	{
 		position.x = SCREEN_WIDTH - SPRITE_SIZE;
 	}
@@ -71,7 +68,7 @@ void Player::Update(Screen& screen)
 	else if (position.y > SCREEN_HEIGHT - SPRITE_SIZE)
 	{
 		position.y = SCREEN_HEIGHT - SPRITE_SIZE;
-	}
+	}*/
 
 	if (IsEnemyDead == false)
 	{

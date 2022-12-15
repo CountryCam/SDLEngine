@@ -1,4 +1,5 @@
 #pragma once
+#include<Windows.h>
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -10,18 +11,17 @@ class Screen
 public:
 
 	Screen();
-	~Screen();
 
 	SDL_Renderer* GetRenderer();
 
-	bool Initialize();
+	bool Initialize(int width = 1280, int height = 720);
 	void Refresh();
 	void Present();
-	void Copy(); //Bad name!!
+	void Render(); 
 	void Shutdown();
 
 private:
-	SDL_Window* window; //Coding standards have changed from m_window -> window 
-	SDL_Renderer* renderer; //Coding standards have changed from m_renderer -> renderer
+	SDL_Window* window; 
+	SDL_Renderer* renderer;
 };
 

@@ -11,18 +11,12 @@ Screen::Screen()
 	renderer = nullptr;
 }
 
-//TODO - Do we need this?
-Screen::~Screen()
-{
-
-}
-
 SDL_Renderer* Screen::GetRenderer()
 {
 	return renderer;
 }
 
-bool Screen::Initialize()
+bool Screen::Initialize(int width, int height)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 	{
@@ -33,8 +27,8 @@ bool Screen::Initialize()
 	window = SDL_CreateWindow("Cameron's Game Engine",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		1280, 720, //TODO - Don't hardcode the resolution
-		0);
+		width, height,
+		0); //Flags
 
 	//TODO - What is this doing here?
 	SDL_Surface* tmpSurface = IMG_Load("Assets/idle0001.png");
@@ -69,9 +63,8 @@ void Screen::Present()
 	SDL_RenderPresent(renderer);
 }
 
-void Screen::Copy()
+void Screen::Render()
 {
-	//TODO - What is this for???
 	//Copying the Render Images
 	SDL_RenderCopy(renderer, playerTex, NULL, NULL);
 }
