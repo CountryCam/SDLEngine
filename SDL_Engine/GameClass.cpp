@@ -3,7 +3,7 @@
 #include "GameClass.h"
 #include <iostream>
 
-Background::Background(Screen& screen)
+GameClass::GameClass(Screen& screen)
 {
 	background.Load("Images/BackGround.png", screen);
 	background.SetTextureDimension(1280, 720);
@@ -14,12 +14,13 @@ Background::Background(Screen& screen)
 	backgroundMain.SetSourceDimension(1, 1, 1280, 720);
 }
 
-void Background::Update()
+void GameClass::Update()
 {
 	
 	if (Input::Instance()->IsMouseClicked(HM_MOUSE_LEFT) == true)
 	{
 		std::cout << "Mouse Left Clicked" << std::endl;
+		return;
 	}
 
 	if (Input::Instance()->IsKeyPressed(HM_KEY_P) == true)
@@ -33,7 +34,7 @@ void Background::Update()
 	}
 }
 
-void Background::Render(Screen& screen)
+void GameClass::Render(Screen& screen)
 {
 	
 	if (altBackground)
@@ -46,7 +47,7 @@ void Background::Render(Screen& screen)
 	}
 }
 
-void Background::Unload()
+void GameClass::Unload()
 {
 	background.Unload();
 	backgroundMain.Unload();

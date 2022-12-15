@@ -4,18 +4,14 @@
 #include "Vector.h"
 #include "GameClass.h"
 
-class Player
+class Enemy
 {
 public:
-	Player(Screen& screen);
-	~Player();
+	Enemy(Screen& screen);
+	~Enemy();
 
 	void Update(Screen& screen);
-	void Render(Background& background, Screen& screen);
-
-	void SetHealth();
-	void SetPoints();
-
+	void Render(GameClass& background, Screen& screen);
 	void RespwanEnemy(Screen& screen);
 	void Collider();
 

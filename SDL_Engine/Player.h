@@ -3,22 +3,21 @@
 #include "Texture.h"
 #include "Vector.h"
 #include "Enemy.h"
-//TODO - Does this class have much use, as most of the code refers to player?
-class Animations
+
+class Player
 {
 public:
-	Animations(Screen& screen);
-	~Animations();
+	Player(Screen& screen);
+	~Player();
 
 	void Update(Vector<int> playerPosition);
-	void Render(Screen& screen, Background& background);
+	void Render(Screen& screen, GameClass& background);
 	void Unload();
 
-	Vector<int> GetPostion();
+	Vector<int> GetPostionPlayer();
 private:
 	int velocity;
-	//TODO - You could create a Portal class?
-	//TODO - Move this to the Player class===============
+	//TODO - You could create a Portal class? (Cameron) "Once I manage to get my animation working properly again i will for sure"
 	Texture portal;
 	Texture playerRun;
 	Texture playerIdle;
@@ -31,5 +30,4 @@ private:
 	bool portalActive = false;
 	bool playerActive = true;
 	bool playerMoveRight = false;
-	//===================================================
 };

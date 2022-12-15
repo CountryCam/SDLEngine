@@ -4,7 +4,7 @@
 #include "Player.h"
 
 
-Player::Player(Screen& screen)
+Enemy::Enemy(Screen& screen)
 {
 	image.Load("Images/BurlyMan1.png", screen);
 	image.SetTextureDimension(140, 240);
@@ -19,12 +19,12 @@ Player::Player(Screen& screen)
 	enemyPos.y = 350;
 }
 
-Player::~Player()
+Enemy::~Enemy()
 {
 	image.Unload();
 }
 
-void Player::Update(Screen& screen)
+void Enemy::Update(Screen& screen)
 {
 	
 
@@ -69,7 +69,7 @@ void Player::Update(Screen& screen)
 	
 }
 
-void Player::Render(Background& background, Screen& screen)
+void Enemy::Render(GameClass& background, Screen& screen)
 {
 	if (!background.GetBackground())
 	{
@@ -79,17 +79,10 @@ void Player::Render(Background& background, Screen& screen)
 	image.Render(screen, enemyPos.x, enemyPos.y);
 }
 
-void Player::SetHealth()
-{
 
-}
 
-void Player::SetPoints()
-{
 
-}
-
-void Player::RespwanEnemy(Screen& screen)
+void Enemy::RespwanEnemy(Screen& screen)
 {
 	if (IsEnemyDead == true)
 	{
@@ -100,7 +93,7 @@ void Player::RespwanEnemy(Screen& screen)
 	
 }
 
-void Player::Collider()
+void Enemy::Collider()
 {
 
 	Vector<int> PlayerCol, EnemyCol;
@@ -117,7 +110,7 @@ void Player::Collider()
 	}
 }
 
-Vector<int> Player::GetPostion()
+Vector<int> Enemy::GetPostion()
 {
 	return position;
 }

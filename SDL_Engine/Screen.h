@@ -17,7 +17,6 @@ public:
 	bool Initialize(int width = 1280, int height = 720);
 	void Refresh();
 	void Present();
-	void Render(); 
 	void Shutdown();
 
 private:

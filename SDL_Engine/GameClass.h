@@ -3,10 +3,10 @@
 #include "Texture.h"
 #include "Vector.h"
 
-class Background
+class GameClass
 {
 public:
-	Background(Screen& screen);
+	GameClass(Screen& screen);
 	void Update();
 	void Render(Screen& screen);
 	void Unload();

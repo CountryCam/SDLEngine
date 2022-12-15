@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Screen.h"
 
-SDL_Texture* playerTex;
-
 Screen::Screen()
 {
 	//TODO - Consider brace initialization in the header file 
@@ -30,11 +28,6 @@ bool Screen::Initialize(int width, int height)
 		width, height,
 		0); //Flags
 
-	//TODO - What is this doing here?
-	SDL_Surface* tmpSurface = IMG_Load("Assets/idle0001.png");
-	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-	SDL_FreeSurface(tmpSurface);
-
 	if (!window)
 	{
 		std::cout << "Game window could not be created!" << std::endl;
@@ -61,12 +54,6 @@ void Screen::Present()
 {
 	//Swap the frame buffers
 	SDL_RenderPresent(renderer);
-}
-
-void Screen::Render()
-{
-	//Copying the Render Images
-	SDL_RenderCopy(renderer, playerTex, NULL, NULL);
 }
 
 void Screen::Shutdown()

@@ -18,9 +18,9 @@ int main(int arge, char* argv[])
 	Screen screen;
 	screen.Initialize();
 
+	Enemy enemy(screen);
 	Player player(screen);
-	Background backGround(screen);
-	Animations animation(screen);
+	GameClass backGround(screen);
 
 	Music music;
 	music.Initialize();
@@ -57,13 +57,13 @@ int main(int arge, char* argv[])
 		backGround.Update();
 		backGround.Render(screen);
 		
-		//PLAYER MOVEMENT AND RESTRICTIONS
-		player.Update(screen);
-		player.Render(backGround, screen);
+		//PLAYER && ENEMY MOVEMENT AND RESTRICTIONS
+		player.Render(screen, backGround);
+		player.Update(player.GetPostionPlayer());
 
-		animation.Update(player.GetPostion());
-		animation.Render(screen, backGround);
-
+		enemy.Update(screen);
+		enemy.Render(backGround, screen);
+		
 		//returns pointer to Class
 		Input::Instance()->Update();
 
@@ -105,7 +105,9 @@ int main(int arge, char* argv[])
 	screen.Shutdown();
 
 	player.~Player();
-	animation.Unload();
+	player.Unload();
+
+	enemy.~Enemy();
 
 	
 	return 0;

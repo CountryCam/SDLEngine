@@ -5,7 +5,7 @@
 #include "Screen.h"
 #include "Enemy.h"
 
-Animations::Animations(Screen& screen)
+Player::Player(Screen& screen)
 {
 	velocity = 2; 
 	
@@ -23,14 +23,14 @@ Animations::Animations(Screen& screen)
 }
 
 
-Animations::~Animations()
+Player::~Player()
 {
 	portal.Unload();
 	playerRun.Unload();
 	playerIdle.Unload();
 }
 
-void Animations::Update(Vector<int> playerPosition)
+void Player::Update(Vector<int> playerPosition)
 {
 	positionPortal.x = playerPosition.x +80;
 	positionPortal.y = playerPosition.y;
@@ -67,7 +67,7 @@ void Animations::Update(Vector<int> playerPosition)
 	}
 }
 
-void Animations::Render(Screen& screen, Background& background)
+void Player::Render(Screen& screen, GameClass& background)
 {
 	if ((!background.GetBackground()))
 	{
@@ -85,8 +85,6 @@ void Animations::Render(Screen& screen, Background& background)
 			:  playerRun.Render(screen, positionPlayer.x, positionPlayer.y);
 	}
 	
-	
-
 	if (portalActive == true)
 	{
 		portal.IsAnimated(true);
@@ -129,14 +127,14 @@ void Animations::Render(Screen& screen, Background& background)
 	}
 }
 
-void Animations::Unload()
+void Player::Unload()
 {
 	portal.Unload();
 	playerRun.Unload();
 	playerIdle.Unload();
 }
 
-Vector<int> Animations::GetPostion()
+Vector<int> Player::GetPostionPlayer()
 {
 	return positionPlayer;
 }
