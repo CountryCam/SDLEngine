@@ -1,138 +1,142 @@
 #include "Player.h"
+#include "Texture.h"
+#include <iostream>
 #include "Input.h"
 #include "Screen.h"
-#include "Animations.h"
+#include "Enemy.h"
 
-
-Player::Player(Screen& screen)
+Animations::Animations(Screen& screen)
 {
-	image.Load("Images/BurlyMan1.png", screen);
-	image.SetTextureDimension(140, 240);
-	image.SetSourceDimension(1, 1, 140, 240);
-
-	position.x = 5;
-	position.y = 350;
-	playerWidth = 140;
-	playerHeight = 171;
-
-	enemyPos.x = 400;
-	enemyPos.y = 350;
-}
-
-Player::~Player()
-{
-	image.Unload();
-}
-
-void Player::Update(Screen& screen)
-{
+	velocity = 2; 
 	
+	portal.Load("Images/GreenPortal.png", screen);
+	portal.SetTextureDimension(240, 192);
+	portal.SetSourceDimension(8, 3, 512, 192);
 
-	if (Input::Instance()->IsKeyPressed(HM_KEY_ESCAPE))
-	{
-		SDL_Quit();
-	}
-
-	if ((Input::Instance()->IsKeyPressed(HM_KEY_W) || (Input::Instance()->IsKeyPressed(HM_KEY_UP) == true)))
-	{
-		position.y -= 0;
-	}
-
-	if ((Input::Instance()->IsKeyPressed(HM_KEY_S) || (Input::Instance()->IsKeyPressed(HM_KEY_DOWN) == true)))
-	{
-		position.y += 0;
-	}
-
-	if ((Input::Instance()->IsKeyPressed(HM_KEY_LEFT) || (Input::Instance()->IsKeyPressed(HM_KEY_A) == true)))
-	{
-		position.x -= 1;
-	}
-
-	if ((Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) || (Input::Instance()->IsKeyPressed(HM_KEY_D) == true)))
-	{
-		position.x += 1;
-	}
-
-	if (position.x < 0)
-	{
-		position.x = 0;
-	}
-	/*else if (position.x > SCREEN_WIDTH - SPRITE_SIZE)
-	{
-		position.x = SCREEN_WIDTH - SPRITE_SIZE;
-	}
-	if (position.y < 0)
-	{
-		position.y = 0;
-	}
-	else if (position.y > SCREEN_HEIGHT - SPRITE_SIZE)
-	{
-		position.y = SCREEN_HEIGHT - SPRITE_SIZE;
-	}*/
-
-	if (IsEnemyDead == false)
-	{
-		Collider();
-	}
-	else if (IsEnemyDead == true)
-	{
-		RespwanEnemy(screen);
-	}
-	
+	playerRun.Load("Images/SpriteSheet0001Run.png", screen);
+	playerRun.SetTextureDimension(140, 171); //130, 161
+	playerRun.SetSourceDimension(9, 1, 1380, 161); //9, 1, 1380, 161
+			
+	playerIdle.Load("Images/IdleSpriteSheet.png", screen);
+	playerIdle.SetTextureDimension(140, 171);
+	playerIdle.SetSourceDimension(7, 1, 1540, 221);
 }
 
-void Player::Render(Background& background, Screen& screen)
+
+Animations::~Animations()
 {
-	if (!background.GetBackground())
+	portal.Unload();
+	playerRun.Unload();
+	playerIdle.Unload();
+}
+
+void Animations::Update(Vector<int> playerPosition)
+{
+	positionPortal.x = playerPosition.x +80;
+	positionPortal.y = playerPosition.y;
+
+	positionPlayer.x = playerPosition.x; 
+	positionPlayer.y = playerPosition.y +65;
+
+	if (Input::Instance()->IsMouseClicked(HM_MOUSE_LEFT) == true)
 	{
-		
+		std::cout << "Mouse Left Clicked" << std::endl;
+		portalActive = true;
+	}
+	else 
+	{
+		portalActive = false;
+	}
+
+	if ((Input::Instance()->IsKeyPressed(HM_KEY_LEFT)) || (Input::Instance()->IsKeyPressed(HM_KEY_A)))
+	{
+		directionStand = directionWalk = Vector<int>::Left;
+		playerMoveRight = true;
+		playerActive = false;
+	}
+	else if ((Input::Instance()->IsKeyPressed(HM_KEY_RIGHT)) || (Input::Instance()->IsKeyPressed(HM_KEY_D)))
+	{
+		directionStand = directionWalk = Vector<int>::Right;
+		playerMoveRight = true;
+		playerActive = false;
+	}
+	else
+	{
+		directionWalk = Vector<int>::Zero;
+		playerMoveRight = false;
+	}
+}
+
+void Animations::Render(Screen& screen, Background& background)
+{
+	if ((!background.GetBackground()))
+	{
 		return;
 	}
-	image.Render(screen, enemyPos.x, enemyPos.y);
-	
-	
 
-}
-
-void Player::SetHealth()
-{
-
-}
-
-void Player::SetPoints()
-{
-
-}
-
-void Player::RespwanEnemy(Screen& screen)
-{
-	if (IsEnemyDead == true)
+	if (directionWalk.x == 0 && directionWalk.y == 0 )
 	{
-		//Respawn the Enemy Character && Set back to IsEnemyDead to false
-		image.Render(screen, enemyPos.x + 45, enemyPos.y);
-		IsEnemyDead = false;
+		directionStand.x < 0.0f ? playerIdle.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
+			: playerIdle.Render(screen, positionPlayer.x, positionPlayer.y);
+	}
+	else
+	{
+		directionWalk.x < 0.0f ?  playerRun.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
+			:  playerRun.Render(screen, positionPlayer.x, positionPlayer.y);
 	}
 	
-}
+	
 
-void Player::Collider()
-{
-
-	Vector<int> PlayerCol, EnemyCol;
-	PlayerCol.x = position.x + playerWidth.x;
-	PlayerCol.y = position.y + playerHeight.y;
-
-	EnemyCol.x = enemyPos.x + imageWidth.x;
-	EnemyCol.y = enemyPos.y + imageHeight.y;
-
-	if (PlayerCol.x >= EnemyCol.x && PlayerCol.y >= EnemyCol.y)
+	if (portalActive == true)
 	{
-		image.Unload();
-		IsEnemyDead = true;
+		portal.IsAnimated(true);
+		portal.IsAnimationLooping(true);
+		portal.SetAnimationSpeed(0.09f);
+		portal.Update();
+		portal.Render(screen, positionPortal.x, positionPortal.y);
+	}
+	if (playerActive == true)
+	{
+		playerIdle.IsAnimated(true);
+		playerIdle.IsAnimationLooping(true);
+		playerIdle.SetAnimationSpeed(0.1f);
+		playerIdle.Update();
+	}
+	if (playerActive == false)
+	{
+		playerIdle.IsAnimated(false);
+		playerIdle.IsAnimationLooping(false);
+		playerIdle.SetAnimationSpeed(0.1f);
+		playerIdle.Update();
+
+	}
+
+	if (playerMoveRight == true)
+	{
+		playerRun.IsAnimated(true);
+		playerRun.IsAnimationLooping(true);
+		playerRun.SetAnimationSpeed(0.1f);
+		playerRun.Update();
+		playerActive = false;
+	}
+	if (playerMoveRight == false)
+	{
+		playerRun.IsAnimated(false);
+		playerRun.IsAnimationLooping(false);
+		playerRun.SetAnimationSpeed(0.1f);
+		playerRun.Update();
+		playerActive = true;
 	}
 }
 
-Vector<int> Player::GetPostion()
+void Animations::Unload()
 {
-	return position;
+	portal.Unload();
+	playerRun.Unload();
+	playerIdle.Unload();
+}
+
+Vector<int> Animations::GetPostion()
+{
+	return positionPlayer;
 }

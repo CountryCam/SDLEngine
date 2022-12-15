@@ -147,24 +147,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Music.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animations.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Background.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Vector.h" />

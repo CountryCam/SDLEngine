@@ -6,9 +6,9 @@
 #include "Vector.h"
 #include "Music.h"
 #include "Text.h"
-#include "Player.h"
+#include "Enemy.h"
 #include "Background.h"
-#include "Animations.h"
+#include "Player.h"
 
 bool isGameRunning = true;
 bool altBackGround = false;
