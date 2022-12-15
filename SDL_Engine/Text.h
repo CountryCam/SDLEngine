@@ -4,7 +4,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "Screen.h"
-#include "Background.h"
+#include "GameClass.h"
 
 class Text
 {

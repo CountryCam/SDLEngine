@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Screen.h"
-#include "Background.h"
+#include "GameClass.h"
 #include <iostream>
 
 Background::Background(Screen& screen)

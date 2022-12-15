@@ -7,7 +7,7 @@
 #include "Music.h"
 #include "Text.h"
 #include "Enemy.h"
-#include "Background.h"
+#include "GameClass.h"
 #include "Player.h"
 
 bool isGameRunning = true;

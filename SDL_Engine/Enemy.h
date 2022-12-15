@@ -2,7 +2,7 @@
 
 #include "Texture.h"
 #include "Vector.h"
-#include "Background.h"
+#include "GameClass.h"
 
 class Player
 {

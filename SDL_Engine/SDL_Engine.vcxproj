@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="GameClass.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -159,7 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Background.h" />
+    <ClInclude Include="GameClass.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />
