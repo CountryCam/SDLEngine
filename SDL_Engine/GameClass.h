@@ -11,7 +11,7 @@ public:
 	void Render(Screen& screen);
 	void Unload();
 
-	//TODO - Why is the function definition not in the .cpp file?
+	//TODO -(Karsten) Why is the function definition not in the .cpp file? == (Cameron) I'm checking background then if altBackground is true. Spawn enemy
 	bool GetBackground() { return altBackground; };
 
 private:

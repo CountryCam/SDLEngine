@@ -16,7 +16,7 @@ Background::Background(Screen& screen)
 
 void Background::Update()
 {
-	//TODO - The Game class should control this
+	
 	if (Input::Instance()->IsMouseClicked(HM_MOUSE_LEFT) == true)
 	{
 		std::cout << "Mouse Left Clicked" << std::endl;
@@ -35,7 +35,7 @@ void Background::Update()
 
 void Background::Render(Screen& screen)
 {
-	//TODO - The Game class should control this
+	
 	if (altBackground)
 	{
 		backgroundMain.Render(screen);

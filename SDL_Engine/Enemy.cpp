@@ -57,18 +57,6 @@ void Player::Update(Screen& screen)
 	{
 		position.x = 0;
 	}
-	/*else if (position.x > SCREEN_WIDTH - SPRITE_SIZE)
-	{
-		position.x = SCREEN_WIDTH - SPRITE_SIZE;
-	}
-	if (position.y < 0)
-	{
-		position.y = 0;
-	}
-	else if (position.y > SCREEN_HEIGHT - SPRITE_SIZE)
-	{
-		position.y = SCREEN_HEIGHT - SPRITE_SIZE;
-	}*/
 
 	if (IsEnemyDead == false)
 	{

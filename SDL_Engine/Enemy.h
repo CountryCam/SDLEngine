@@ -21,8 +21,6 @@ public:
 
 	Vector<int> GetPostion();
 private:
-	//const int SPRITE_SIZE = 108;
-	//TODO - Does player need to know this?
 	bool IsEnemyDead = true;
 
 	Texture image;
