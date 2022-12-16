@@ -7,12 +7,12 @@
 class Enemy
 {
 public:
-	Enemy(Screen& screen);
+	Enemy(); //Screen& screen
 	~Enemy();
 
-	void Update(Screen& screen);
-	void Render(GameClass& background, Screen& screen);
-	void RespwanEnemy(Screen& screen);
+	void Update(); //Screen& screen
+	void Render(GameClass& background); // Screen& screen
+	void RespwanEnemy(); //Screen& screen
 	void Collider();
 
 	Vector<int> GetPostion();

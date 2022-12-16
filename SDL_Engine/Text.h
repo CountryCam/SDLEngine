@@ -23,11 +23,11 @@ public:
 	void SetColor(Uint8 r, Uint8 g, Uint8 b);
 	void SetString(const std::string& string);
 
-	void Render(Screen& screen, int x = 0, int y = 0);
+	void Render(int x = 0, int y = 0); //Screen& screen
 
 private:
 
-	void CreateText(Screen& screen);
+	void CreateText(); //Screen& screen
 	bool mainMenuText = true; //Camel case!
 	
 	std::string m_string;

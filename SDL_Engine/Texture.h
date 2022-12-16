@@ -17,7 +17,7 @@ public:
 
 	Texture(int width = 0, int height = 0);
 
-	bool Load(const std::string& filename, Screen& screen);
+	bool Load(const std::string& filename); //, Screen& screen
 	void Unload();
 
 	void IsAnimated(bool flag);
@@ -28,7 +28,7 @@ public:
 	void SetAnimationSpeed(float animationSpeed);
 
 	void Update();
-	void Render(Screen& screen, int x = 0, int y = 0, Flip flip = Flip::None);
+	void Render(int x = 0, int y = 0, Flip flip = Flip::None); //Screen& screen
 
 private:
 	int cell;

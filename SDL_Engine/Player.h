@@ -7,11 +7,11 @@
 class Player
 {
 public:
-	Player(Screen& screen);
+	Player(); //Screen& screen
 	~Player();
 
 	void Update(Vector<int> playerPosition);
-	void Render(Screen& screen, GameClass& background);
+	void Render(GameClass& background); //Screen& screen,
 	void Unload();
 
 	Vector<int> GetPostionPlayer();

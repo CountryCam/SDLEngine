@@ -3,13 +3,13 @@
 #include "GameClass.h"
 #include <iostream>
 
-GameClass::GameClass(Screen& screen)
+GameClass::GameClass() //Screen& screen
 {
-	background.Load("Images/BackGround.png", screen);
+	background.Load("Images/BackGround.png"); //screen
 	background.SetTextureDimension(1280, 720);
 	background.SetSourceDimension(1, 1, 1280, 720);
 
-	backgroundMain.Load("Images/RockyBackground.png", screen);
+	backgroundMain.Load("Images/RockyBackground.png"); //screen
 	backgroundMain.SetTextureDimension(1280, 720);
 	backgroundMain.SetSourceDimension(1, 1, 1280, 720);
 }
@@ -34,16 +34,16 @@ void GameClass::Update()
 	}
 }
 
-void GameClass::Render(Screen& screen)
+void GameClass::Render() //Screen& screen
 {
 	
 	if (altBackground)
 	{
-		backgroundMain.Render(screen);
+		backgroundMain.Render(); //screen
 	}
 	else
 	{
-		background.Render(screen);
+		background.Render(); //screen
 	}
 }
 

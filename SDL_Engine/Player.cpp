@@ -5,19 +5,19 @@
 #include "Screen.h"
 #include "Enemy.h"
 
-Player::Player(Screen& screen)
+Player::Player() //Screen& screen
 {
 	velocity = 2; 
 	
-	portal.Load("Images/GreenPortal.png", screen);
+	portal.Load("Images/GreenPortal.png"); //screen
 	portal.SetTextureDimension(240, 192);
 	portal.SetSourceDimension(8, 3, 512, 192);
 
-	playerRun.Load("Images/SpriteSheet0001Run.png", screen);
+	playerRun.Load("Images/SpriteSheet0001Run.png"); //screen
 	playerRun.SetTextureDimension(140, 171); //130, 161
 	playerRun.SetSourceDimension(9, 1, 1380, 161); //9, 1, 1380, 161
 			
-	playerIdle.Load("Images/IdleSpriteSheet.png", screen);
+	playerIdle.Load("Images/IdleSpriteSheet.png"); //screen
 	playerIdle.SetTextureDimension(140, 171);
 	playerIdle.SetSourceDimension(7, 1, 1540, 221);
 }
@@ -67,7 +67,7 @@ void Player::Update(Vector<int> playerPosition)
 	}
 }
 
-void Player::Render(Screen& screen, GameClass& background)
+void Player::Render(GameClass& background) //Screen& screen,
 {
 	if ((!background.GetBackground()))
 	{
@@ -76,13 +76,13 @@ void Player::Render(Screen& screen, GameClass& background)
 
 	if (directionWalk.x == 0 && directionWalk.y == 0 )
 	{
-		directionStand.x < 0.0f ? playerIdle.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
-			: playerIdle.Render(screen, positionPlayer.x, positionPlayer.y);
+		directionStand.x < 0.0f ? playerIdle.Render(positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal) //screen
+			: playerIdle.Render(positionPlayer.x, positionPlayer.y); //screen,
 	}
 	else
 	{
-		directionWalk.x < 0.0f ?  playerRun.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
-			:  playerRun.Render(screen, positionPlayer.x, positionPlayer.y);
+		directionWalk.x < 0.0f ?  playerRun.Render(positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal) //screen,
+			:  playerRun.Render(positionPlayer.x, positionPlayer.y); //screen,
 	}
 
 	if (portalActive == true)
@@ -91,7 +91,7 @@ void Player::Render(Screen& screen, GameClass& background)
 		portal.IsAnimationLooping(true);
 		portal.SetAnimationSpeed(0.09f);
 		portal.Update();
-		portal.Render(screen, positionPortal.x, positionPortal.y);
+		portal.Render(positionPortal.x, positionPortal.y); //screen,
 	}
 	if (playerActive == true)
 	{

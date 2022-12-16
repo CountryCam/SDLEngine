@@ -7,10 +7,8 @@
 
 class Screen
 {
-
 public:
-
-	Screen();
+	static Screen* Instance();
 
 	SDL_Renderer* GetRenderer();
 
@@ -20,7 +18,11 @@ public:
 	void Shutdown();
 
 private:
-	SDL_Window* window; 
-	SDL_Renderer* renderer;
+	Screen() {}
+	Screen(const Screen&);
+	Screen& operator=(const Screen&);
+
+	SDL_Window* window{ nullptr };
+	SDL_Renderer* renderer{ nullptr };
 };
 

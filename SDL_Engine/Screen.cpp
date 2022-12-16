@@ -1,13 +1,12 @@
 #include <iostream>
 #include "Screen.h"
 
-Screen::Screen()
+Screen* Screen::Instance()
 {
-	//TODO - Consider brace initialization in the header file 
-	//and remove ctor entirely
-	window = nullptr;
-	renderer = nullptr;
+	static Screen* screenObject = new Screen();
+	return screenObject;
 }
+
 
 SDL_Renderer* Screen::GetRenderer()
 {

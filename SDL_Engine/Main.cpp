@@ -15,12 +15,11 @@ bool altBackGround = false;
 
 int main(int arge, char* argv[])
 {
-	Screen screen;
-	screen.Initialize();
+	Screen::Instance()->Initialize();
 
-	Enemy enemy(screen);
-	Player player(screen);
-	GameClass backGround(screen);
+	Enemy enemy;
+	Player player;
+	GameClass backGround;
 
 	Music music;
 	music.Initialize();
@@ -53,16 +52,16 @@ int main(int arge, char* argv[])
 		auto timeStart = SDL_GetTicks();
 
 		//Refresh Screen
-		screen.Refresh();
+		Screen::Instance()->Refresh();
 		backGround.Update();
-		backGround.Render(screen);
+		backGround.Render(); //screen
 		
 		//PLAYER && ENEMY MOVEMENT AND RESTRICTIONS
 		player.Update(player.GetPostionPlayer());
-		player.Render(screen, backGround);
+		player.Render(backGround); //screen
 
-		enemy.Update(screen);
-		enemy.Render(backGround, screen);
+		enemy.Update();
+		enemy.Render(backGround); //backGround, screen
 		
 		//returns pointer to Class
 		Input::Instance()->Update();
@@ -71,7 +70,7 @@ int main(int arge, char* argv[])
 		isGameRunning = !(Input::Instance()->IsWindowClosed());
 
 		//Title Render
-		title.Render(screen, 450, 10);
+		title.Render(450, 10); //screen
 		
 
 		//Display Score Timer
@@ -83,10 +82,10 @@ int main(int arge, char* argv[])
 			score.SetString("Time: " + text);
 			totalTime = 0;
 		}
-		score.Render(screen, 10, 10);
+		score.Render(10, 10); //screen
 		
-	
-		screen.Present();
+		Screen::Instance()->Present();
+		//screen.Present();
 
 		//Get End of Ticks - Start of Tick for TotalTime
 		auto timeEnd = SDL_GetTicks() - timeStart;
@@ -95,18 +94,14 @@ int main(int arge, char* argv[])
 	
 	music.Unload();
 	music.Shutdown();
-
 	score.Unload();
 	score.Shutdown();
 	title.Unload();
-	
-
 	backGround.Unload();
-	screen.Shutdown();
-
 	player.~Player();
 	enemy.~Enemy();
 
+	Screen::Instance()->Shutdown();
 	
 	return 0;
 }

@@ -4,9 +4,9 @@
 #include "Player.h"
 
 
-Enemy::Enemy(Screen& screen)
+Enemy::Enemy() //Screen& screen
 {
-	image.Load("Images/BurlyMan1.png", screen);
+	image.Load("Images/BurlyMan1.png" ); //screen
 	image.SetTextureDimension(140, 240);
 	image.SetSourceDimension(1, 1, 140, 240);
 
@@ -24,7 +24,7 @@ Enemy::~Enemy()
 	image.Unload();
 }
 
-void Enemy::Update(Screen& screen)
+void Enemy::Update() //Screen& screen
 {
 	
 
@@ -64,30 +64,30 @@ void Enemy::Update(Screen& screen)
 	}
 	else if (IsEnemyDead == true)
 	{
-		RespwanEnemy(screen);
+		RespwanEnemy(); //screen
 	}
 	
 }
 
-void Enemy::Render(GameClass& background, Screen& screen)
+void Enemy::Render(GameClass& background) //Screen& screen
 {
 	if (!background.GetBackground())
 	{
 		
 		return;
 	}
-	image.Render(screen, enemyPos.x, enemyPos.y);
+	image.Render(enemyPos.x, enemyPos.y); //screen
 }
 
 
 
 
-void Enemy::RespwanEnemy(Screen& screen)
+void Enemy::RespwanEnemy() //Screen& screen
 {
 	if (IsEnemyDead == true)
 	{
 		//Respawn the Enemy Character && Set back to IsEnemyDead to false
-		image.Render(screen, enemyPos.x + 45, enemyPos.y);
+		image.Render(enemyPos.x + 45, enemyPos.y); //screen, enemyPos.x + 45, enemyPos.y
 		IsEnemyDead = false;
 	}
 	

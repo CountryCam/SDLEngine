@@ -26,7 +26,7 @@ Texture::Texture(int width, int height)
 	isAnimationLoopFinal = false;
 }
 
-bool Texture::Load(const std::string& filename, Screen& screen)
+bool Texture::Load(const std::string& filename) // Screen& screen
 {
 	SDL_Surface* TextureData = IMG_Load(filename.c_str());
 
@@ -36,7 +36,7 @@ bool Texture::Load(const std::string& filename, Screen& screen)
 		return false;
 	}
 
-	texture = SDL_CreateTextureFromSurface(screen.GetRenderer(), TextureData);
+	texture = SDL_CreateTextureFromSurface(Screen::Instance()->GetRenderer(), TextureData);
 	return true;
 }
 
@@ -87,7 +87,7 @@ void Texture::Update()
 	}
 }
 
-void Texture::Render(Screen& screen, int x, int y, Flip flip)
+void Texture::Render(int x, int y, Flip flip) // Screen& screen
 {
 	if (!isAnimationDead)
 	{
@@ -108,6 +108,6 @@ void Texture::Render(Screen& screen, int x, int y, Flip flip)
 		centrePoint.x = textureDimension.x / 2;
 		centrePoint.y = textureDimension.y / 2;
 
-		SDL_RenderCopyEx(screen.GetRenderer(), texture, &src, &dst, 0.0, &centrePoint, static_cast<SDL_RendererFlip>(flip));
+		SDL_RenderCopyEx(Screen::Instance()->GetRenderer(), texture, &src, &dst, 0.0, &centrePoint, static_cast<SDL_RendererFlip>(flip));
 	}
 }

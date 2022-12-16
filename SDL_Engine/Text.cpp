@@ -70,7 +70,7 @@ void Text::SetString(const std::string& string)
 
 }
 
-void Text::Render(Screen& screen, int x, int y)
+void Text::Render(int x, int y) //Screen& screen, 
 {
 	
 	SDL_Rect dst;
@@ -80,16 +80,16 @@ void Text::Render(Screen& screen, int x, int y)
 	dst.w = textSize.x;
 	dst.h = textSize.y;
 
-	CreateText(screen);
-	SDL_RenderCopy(screen.GetRenderer(), texture, nullptr, &dst);
+	CreateText();
+	SDL_RenderCopy(Screen::Instance()->GetRenderer(), texture, nullptr, &dst);
 }
 
-void Text::CreateText(Screen& screen)
+void Text::CreateText() //Screen& screen
 {
 	SDL_Surface* textSurface = TTF_RenderText_Blended(font, m_string.c_str(), color);
 
 	SDL_DestroyTexture(texture);
-	texture = SDL_CreateTextureFromSurface(screen.GetRenderer(), textSurface);
+	texture = SDL_CreateTextureFromSurface(Screen::Instance()->GetRenderer(), textSurface);
 
 	SDL_FreeSurface(textSurface);
 }
