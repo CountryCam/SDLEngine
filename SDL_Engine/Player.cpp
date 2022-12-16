@@ -84,7 +84,7 @@ void Player::Render(Screen& screen, GameClass& background)
 		directionWalk.x < 0.0f ?  playerRun.Render(screen, positionPlayer.x, positionPlayer.y, Texture::Flip::Horizontal)
 			:  playerRun.Render(screen, positionPlayer.x, positionPlayer.y);
 	}
-	
+
 	if (portalActive == true)
 	{
 		portal.IsAnimated(true);
@@ -108,7 +108,6 @@ void Player::Render(Screen& screen, GameClass& background)
 		playerIdle.Update();
 
 	}
-
 	if (playerMoveRight == true)
 	{
 		playerRun.IsAnimated(true);

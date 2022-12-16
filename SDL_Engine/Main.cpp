@@ -58,8 +58,8 @@ int main(int arge, char* argv[])
 		backGround.Render(screen);
 		
 		//PLAYER && ENEMY MOVEMENT AND RESTRICTIONS
-		player.Render(screen, backGround);
 		player.Update(player.GetPostionPlayer());
+		player.Render(screen, backGround);
 
 		enemy.Update(screen);
 		enemy.Render(backGround, screen);
@@ -105,8 +105,6 @@ int main(int arge, char* argv[])
 	screen.Shutdown();
 
 	player.~Player();
-	player.Unload();
-
 	enemy.~Enemy();
 
 	
